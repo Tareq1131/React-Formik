@@ -36,8 +36,9 @@ function YoutubeFrom() {
     validate,
   });
 
-  console.log("Form values", formik.values);
-  console.log("Form values", formik.errors);
+  //   console.log("Form values", formik.values);
+  //   console.log("Form values", formik.errors);
+  console.log("Visited Field", formik.touched);
   return (
     <div>
       <form onSubmit={formik.handleSubmit}>
@@ -48,9 +49,10 @@ function YoutubeFrom() {
             id="name"
             name="name"
             onChange={formik.handleChange}
+            onBlur={formik.handleBlur}
             value={formik.values.name}
           />
-          {formik.errors.name ? (
+          {formik.touched.name && formik.errors.name ? (
             <div className="error">{formik.errors.name}</div>
           ) : null}
         </div>
@@ -62,9 +64,10 @@ function YoutubeFrom() {
             id="email"
             name="email"
             onChange={formik.handleChange}
+            onBlur={formik.handleBlur}
             value={formik.values.email}
           />
-          {formik.errors.email ? (
+          {formik.touched.email && formik.errors.email ? (
             <div className="error">{formik.errors.email}</div>
           ) : null}
         </div>
@@ -75,9 +78,10 @@ function YoutubeFrom() {
             id="channel"
             name="channel"
             onChange={formik.handleChange}
+            onBlur={formik.handleBlur}
             value={formik.values.channel}
           />
-          {formik.errors.channel ? (
+          {formik.touched.channel && formik.errors.channel ? (
             <div className="error">{formik.errors.channel}</div>
           ) : null}
         </div>

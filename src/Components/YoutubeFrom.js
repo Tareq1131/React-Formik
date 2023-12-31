@@ -3,7 +3,18 @@ import { Formik, Form, Field, ErrorMessage } from "formik";
 import * as Yup from "yup";
 import TextError from "./TextError";
 
-const initialValues = { name: "", email: "", channel: "",comments: "",address: "" };
+const initialValues = { 
+    name: "", 
+email: "", 
+channel: "",
+comments: "",
+address: "",
+social: {
+    facebook: '',
+    twitter: ''
+}
+
+};
 
 const onSubmit = (values) => {
   console.log("form Data", values);
@@ -13,7 +24,7 @@ const onSubmit = (values) => {
 const validationSchema = Yup.object({
   name: Yup.string().required("Required Name"),
   email: Yup.string().email("Invalid email format").required("Required mail"),
-  channel: Yup.string().required("Required"),
+  channel: Yup.string().required("Required channel"),
 });
 
 function YoutubeFrom() {
@@ -45,7 +56,7 @@ function YoutubeFrom() {
         <div className="form-control">
           <label htmlFor="channel">Channel</label>
           <Field type="text" id="channel" name="channel" placeholder= 'Youtube channel Name'/>
-          <ErrorMessage name="channel" />
+          <ErrorMessage name="channel" component ={TextError}/>
         </div>
 
         <div className="form-control">
@@ -70,6 +81,16 @@ function YoutubeFrom() {
         }
         
         </Field>
+        </div>
+
+        <div className="form-control">
+        <label htmlFor="facebook">Facebook profile</label>
+        <Field type='text' id='facebook' name= 'social.facebook'/>
+        </div>
+
+        <div className="form-control">
+        <label htmlFor="twitter">Twitter profile</label>
+        <Field type='text' id='twitter' name= 'social.twitter'/>
         </div>
         <button type="submit">Submit</button>
       </Form>

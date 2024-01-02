@@ -28,6 +28,14 @@ const validationSchema = Yup.object({
   channel: Yup.string().required("Required channel"),
 });
 
+const validateComments = (value) => {
+  let error;
+  if (!value) {
+    error = "Required";
+  }
+  return error;
+};
+
 function YoutubeFrom() {
   //   console.log("Visited Field", formik.touched);
   return (
@@ -63,8 +71,15 @@ function YoutubeFrom() {
 
         <div className="form-control">
           <label htmlFor="comments">Comments</label>
-          <Field as="textarea" id="comments" name="comments" />
+          <Field
+            as="textarea"
+            id="comments"
+            name="comments"
+            validate={validateComments}
+          />
+          <ErrorMessage name="comments" component={TextError} />
         </div>
+
         <div className="form-control">
           <label htmlFor="address">Address</label>
           <Field name="address">
